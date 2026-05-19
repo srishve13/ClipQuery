@@ -21,7 +21,7 @@ router.post("/", upload.single("video"), async (req, res) => {
     formData.append("video", fs.createReadStream(file.path));
 
     const aiResponse = await axios.post(
-      "http://127.0.0.1:8000/process",
+      "http://clipquery-production.up.railway.app/process",
       formData,
       {
         headers: formData.getHeaders(),

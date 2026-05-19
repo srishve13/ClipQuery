@@ -46,7 +46,7 @@ const SearchPage = () => {
       formData.append("query", query);
       formData.append("video", videoFile);
 
-      const response = await fetch("http://127.0.0.1:8000/process", {
+      const response = await fetch("http://clipquery-production.up.railway.app/process", {
         method: "POST",
         body: formData,
       });
@@ -101,7 +101,7 @@ const SearchPage = () => {
     setExtractingTime(time);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/extract", {
+      const response = await fetch("http://clipquery-production.up.railway.app/extract", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +118,7 @@ const SearchPage = () => {
       const startTime = time.split(" - ")[0];
       const safeTime = startTime.replace(/[:]/g, "_");
 
-      const clipUrl = `http://127.0.0.1:8000/clips/clip_${safeTime}.mp4`;
+      const clipUrl = `http://clipquery-production.up.railway.app/clips/clip_${safeTime}.mp4`;
 
       await new Promise((res) => setTimeout(res, 800));
 
