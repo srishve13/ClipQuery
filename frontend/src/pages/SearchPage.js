@@ -23,6 +23,7 @@ const SearchPage = () => {
     if (location.state?.query && videoFile) {
       handleSearch(location.state.query);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state, videoFile]);
 
   const timeToSeconds = (timeStr) => {
