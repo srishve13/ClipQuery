@@ -1,5 +1,22 @@
+# Node
+node_modules/
+dist/
+build/
+
+# Python
 venv/
 __pycache__/
 *.pyc
-node_modules/
-*.mp4
+
+# Environment files
+.env
+
+# AI / video generated files
+uploads/
+clips/
+frames/
+temp_*.mp4
+
+# OS files
+.DS_Store
+Thumbs.db

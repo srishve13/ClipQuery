@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+transformers
+sentence-transformers
+torch
+opencv-python-headless
+numpy
+Pillow
+python-multipart
+ffmpeg-python
+scikit-learn
+huggingface-hub

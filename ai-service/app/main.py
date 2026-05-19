@@ -13,6 +13,7 @@ from fastapi.responses import FileResponse
 app = FastAPI()
 
 os.makedirs("clips", exist_ok=True)
+os.makedirs("frames", exist_ok=True)
 
 app.mount("/clips", StaticFiles(directory="clips"), name="clips")
 
@@ -177,10 +178,11 @@ async def extract_clip(data: dict = Body(...)):
         output_path
     ]
 
-    subprocess.run(command)
-
-    result = subprocess.run(command,
-    capture_output=True, text=True)
+    result = subprocess.run(
+        command,
+        capture_output=True,
+        text=True
+    )
     print("FFMPEG OUTPUT:", result.stdout)
     print("FFMPEG ERROR:", result.stderr)
 
@@ -189,3 +191,7 @@ async def extract_clip(data: dict = Body(...)):
         filename="clip.mp4",
         media_type="video/mp4"
     )
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
