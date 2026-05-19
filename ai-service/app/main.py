@@ -28,9 +28,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
-model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+processor = None
+model = None
+embedder = None
 
 @app.get("/")
 def root():
@@ -46,6 +46,21 @@ async def process_video(
     query: str = Form(...)
 ):
     global LAST_VIDEO_PATH
+
+    global processor, model, embedder
+
+    if processor is None:
+        processor = BlipProcessor.from_pretrained(
+            "Salesforce/blip-image-captioning-base"
+        )
+
+    if model is None:
+        model = BlipForConditionalGeneration.from_pretrained(
+            "Salesforce/blip-image-captioning-base"
+        )
+
+    if embedder is None:
+        embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
     print("Received query:", query)
     print("Received file:", video.filename)
